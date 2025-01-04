@@ -1,13 +1,21 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: log-printer
 spec:
-  containers:
-  - name: log-printer
-    image: busybox:1.35
-    command:
-      - /bin/sh
-      - -c
-      - "while true; do echo $(date) - Log message; sleep 10; done"
-
+  replicas: 3
+  selector:
+    matchLabels:
+      app: log-printer
+  template:
+    metadata:
+      labels:
+        app: log-printer
+    spec:
+      containers:
+      - name: log-printer
+        image: busybox:1.35
+        command:
+          - /bin/sh
+          - -c
+          - "while true; do echo $(date) - Log message; sleep 20; done"

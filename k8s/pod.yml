@@ -9,5 +9,5 @@ spec:
     command:
       - /bin/sh
       - -c
-      - "while true; do echo $(date) - Log message; sleep 1; done"
+      - "while true; do echo $(date) - Log message; sleep 10; done"
 
